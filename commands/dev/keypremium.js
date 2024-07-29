@@ -1,7 +1,7 @@
 const { SlashCommandBuilder } = require("discord.js");
 const log = require("../../logger");
 const db = require("../../db");
-const { format } = require("date-fns");
+const { format, addDays } = require("date-fns");
 
 module.exports = {
     data: new SlashCommandBuilder()
@@ -16,18 +16,10 @@ module.exports = {
 
             const key = await generateUniqueKey();
             const expiresInDays = interaction.options.getNumber('expires') || null;
-            let expirationDate = null;
-
-            if (expiresInDays) {
-                const expiration = new Date();
-                expiration.setDate(expiration.getDate() + expiresInDays);
-                expirationDate = format(expiration, 'yyyy-MM-dd HH:mm:ss');
-            }
+            const expirationDate = expiresInDays ? format(addDays(new Date(), expiresInDays), 'yyyy-MM-dd HH:mm:ss') : null;
 
             const sql = `INSERT INTO premium_keys (key, expiration_date) VALUES (?, ?)`;
-            const values = [key, expirationDate];
-
-            await db.runAsync(sql, values);
+            await db.runAsync(sql, [key, expirationDate]);
 
             let replyMessage = `The premium key has been created: \`${key}\``;
             if (expiresInDays) {
@@ -54,48 +46,17 @@ async function generateUniqueKey() {
 }
 
 function generateKey() {
-    const upperCaseLetters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
-    const lowerCaseLetters = 'abcdefghijklmnopqrstuvwxyz';
-    const digits = '0123456789';
-    const specialCharacters = '*#?!§%$£&@';
-    const allCharacters = upperCaseLetters + lowerCaseLetters + digits + specialCharacters;
-
+    const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789*#?!§%$£&@';
     let key = '';
-    let lastCharType = '';
-
     for (let i = 0; i < 20; i++) {
-        let char;
-        let charType;
-
-        do {
-            char = allCharacters.charAt(Math.floor(Math.random() * allCharacters.length));
-            if (upperCaseLetters.includes(char)) {
-                charType = 'upper';
-            } else if (digits.includes(char)) {
-                charType = 'digit';
-            } else if (specialCharacters.includes(char)) {
-                charType = 'special';
-            } else {
-                charType = 'lower';
-            }
-        } while (charType === lastCharType);
-
-        key += char;
-        lastCharType = charType;
+        key += characters.charAt(Math.floor(Math.random() * characters.length));
     }
-
     return key;
 }
 
 async function getExistingKeys() {
-    return new Promise((resolve, reject) => {
-        db.all('SELECT key FROM premium_keys', [], (err, rows) => {
-            if (err) {
-                return reject(err);
-            }
-            resolve(rows.map(row => row.key));
-        });
-    });
+    const rows = await db.allAsync('SELECT key FROM premium_keys');
+    return rows.map(row => row.key);
 }
 
 function isKeyTooSimilar(newKey, existingKeys) {
