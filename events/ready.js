@@ -40,11 +40,21 @@ module.exports = {
             log.info(`✔️  Successfully reloaded ${commands.length} application (/) commands.`);
 
             await client.user.setActivity({
-                name: 'blacklist users',
-                type: ActivityType.Playing,
+                name: 'Private Messages',
+                type: ActivityType.Watching,
             });
 
             log.info(`✔️  Logged in as ${client.user.tag}`);
+
+
+            try {
+                require('../tables.js')
+            } catch (error) {
+                log.error(error);
+                console.error(error);
+            }
+
+
         } catch (error) {
             log.error(error);
             console.error(error);
