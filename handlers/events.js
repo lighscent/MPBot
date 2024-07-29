@@ -1,3 +1,6 @@
+// MPBot by light2k4 (https://discord.gg/YmA88jc7GF)
+// Ce handler permet de charger les events du bot.
+
 const fs = require('fs');
 const path = require('path');
 const client = require('../client');

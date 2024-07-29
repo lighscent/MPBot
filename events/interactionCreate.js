@@ -1,3 +1,6 @@
+// MPBot by light2k4 (https://discord.gg/YmA88jc7GF)
+// Cet event permet de gérer les interactions du bot.
+
 const { Events } = require("discord.js");
 const log = require("../logger");
 const db = require("../db");

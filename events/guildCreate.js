@@ -1,3 +1,6 @@
+// MPBot by light2k4 (https://discord.gg/YmA88jc7GF)
+// Cet event permet d'ajouter les serveurs qui ajoutent le bot à la base de données.
+
 const { Events } = require('discord.js');
 const log = require('../logger.js');
 const db = require('../db.js');

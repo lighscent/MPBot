@@ -1,3 +1,7 @@
+// MPBot by light2k4 (https://discord.gg/YmA88jc7GF)
+// Cette commande permet de générer une clé premium et de l'ajouter à la base de données
+// Pour utiliser cette commande, il faut être le développeur du bot (mettre votre ID dans le fichier .env)
+
 const { SlashCommandBuilder } = require("discord.js");
 const log = require("../../logger");
 const db = require("../../db");

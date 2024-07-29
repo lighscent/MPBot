@@ -1,3 +1,6 @@
+// MPBot by light2k4 (https://discord.gg/YmA88jc7GF)
+// Cet event permet de gérer les slash commands du bot et la création des tables dans la base de données.
+
 const { REST, Routes, Events, ActivityType, Collection } = require('discord.js');
 const fs = require('fs').promises;
 const path = require('path');

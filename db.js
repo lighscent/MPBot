@@ -1,4 +1,6 @@
-// db.js
+// MPBot by light2k4 (https://discord.gg/YmA88jc7GF)
+// Ce fichier permet de gérer la base de données SQLite.
+
 const sqlite3 = require('sqlite3').verbose();
 const db = new sqlite3.Database('./database.db');
 

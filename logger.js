@@ -1,3 +1,6 @@
+// MPBot by light2k4 (https://discord.gg/YmA88jc7GF)
+// Ce fichier permet d'avoir un logger customisé et d'enregistrer les logs dans des fichiers.
+
 const path = require("path");
 const winston = require("winston");
 

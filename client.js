@@ -1,3 +1,6 @@
+// MPBot by light2k4 (https://discord.gg/YmA88jc7GF)
+// Ce fichier permet de créer le client Discord.js.
+
 const { Client, GatewayIntentBits } = require('discord.js');
 require('dotenv').config();
 

@@ -1,3 +1,6 @@
+// MPBot by light2k4 (https://discord.gg/YmA88jc7GF)
+// Cette commande permet d'obtenir le statut premium du serveur.
+
 const { SlashCommandBuilder, ButtonBuilder, ButtonStyle, ActionRowBuilder, EmbedBuilder } = require('discord.js');
 const log = require('../../logger.js');
 const db = require('../../db.js');

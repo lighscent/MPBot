@@ -1,3 +1,6 @@
+// MPBot by light2k4 (https://discord.gg/YmA88jc7GF)
+// Ce fichier permet de créer les tables de la base de données.
+
 const db = require('./db.js')
 
 const tables = [
