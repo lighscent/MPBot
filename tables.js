@@ -12,8 +12,7 @@ const tables = [
             'premium BOOLEAN DEFAULT 0',
             'buy_date DATETIME',
             'expire_date DATETIME',
-            'license_key VARCHAR(255)',
-            'payement_method VARCHAR(255)'
+            'license_key VARCHAR(255)'
         ]
     },
     {
